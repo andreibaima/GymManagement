@@ -16,10 +16,10 @@ namespace GymManagement.Core.Entities
         }
 
         public string Plancode { get; private set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public Plan Plan { get; private set; }
         public string ModalityCode { get; private set; }
-        [JsonIgnore]
+        //[JsonIgnore]
         public Modality Modality { get; private set; }
     }
 }

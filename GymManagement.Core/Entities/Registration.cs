@@ -16,7 +16,7 @@ namespace GymManagement.Core.Entities
             Valor = valor;
             CreationDate = DateTime.Now;
             DueDate = dueDate;
-
+            IsActive= true;
             MonthlyPayments = monthlyPayments;
         }
 
@@ -33,8 +33,17 @@ namespace GymManagement.Core.Entities
         public double Valor { get; private set; }
         public DateTime CreationDate { get; private set; }
         public int DueDate { get; set; }
+        public bool IsActive { get; private set; }
+        public DateTime? ExclusionDate { get; private set; }
         public string? Observation { get; private set; }
         public List<MonthlyPayment> MonthlyPayments { get; private set; }
+
+
+        public void inativarRegistro()
+        {
+            IsActive = false;
+            ExclusionDate = DateTime.Now;
+        }
 
     }
 }

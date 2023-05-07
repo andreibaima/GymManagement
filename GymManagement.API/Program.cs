@@ -31,6 +31,7 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IModalityRepository, ModalityRepository>();
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
+builder.Services.AddScoped<IMonthlyPayments, MonthlyPaymentRepository>();
 
 builder.Services.AddMediatR(t => t.RegisterServicesFromAssemblies(typeof(CreateStudentCommand).Assembly));
 

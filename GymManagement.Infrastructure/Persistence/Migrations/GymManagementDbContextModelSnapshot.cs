@@ -224,6 +224,12 @@ namespace GymManagement.Infrastructure.Persistence.Migrations
                     b.Property<int>("DueDate")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("ExclusionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Observation")
                         .HasColumnType("nvarchar(max)");
 
@@ -242,8 +248,7 @@ namespace GymManagement.Infrastructure.Persistence.Migrations
 
                     b.HasIndex("PlanCode");
 
-                    b.HasIndex("StudentCode")
-                        .IsUnique();
+                    b.HasIndex("StudentCode");
 
                     b.ToTable("Registrations");
                 });
@@ -357,9 +362,9 @@ namespace GymManagement.Infrastructure.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("GymManagement.Core.Entities.Student", "Student")
-                        .WithOne("Registration")
-                        .HasForeignKey("GymManagement.Core.Entities.Registration", "StudentCode")
-                        .HasPrincipalKey("GymManagement.Core.Entities.Student", "Code")
+                        .WithMany("Registration")
+                        .HasForeignKey("StudentCode")
+                        .HasPrincipalKey("Code")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -393,8 +398,7 @@ namespace GymManagement.Infrastructure.Persistence.Migrations
                     b.Navigation("Contact")
                         .IsRequired();
 
-                    b.Navigation("Registration")
-                        .IsRequired();
+                    b.Navigation("Registration");
                 });
 #pragma warning restore 612, 618
         }

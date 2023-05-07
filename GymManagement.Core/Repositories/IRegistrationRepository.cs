@@ -12,6 +12,7 @@ namespace GymManagement.Core.Repositories
         Task AddAsync(Registration registration);
         Task UpdateAsync(Registration registration);
         Task<Registration> GetByCodeAsync(string code);
+        Task<Registration> GetByCodeStudentAsync(string code);
         Task<IEnumerable<Registration>> GetAllAsync();
         Task SalveChangesAsync();
         Task DeleteAsync(Registration registration);

@@ -1,4 +1,5 @@
 ﻿using GymManagement.Application.Commands.CreateModality;
+using GymManagement.Application.Commands.DeleteModality;
 using GymManagement.Application.Commands.UpdateModality;
 using GymManagement.Application.Commands.UpdateStudent;
 using GymManagement.Application.Queries.GetAllModalities;
@@ -58,7 +59,11 @@ namespace GymManagement.API.Controllers
         [HttpDelete("{code}")]
         public async Task<IActionResult> Delete(string code)
         {
-            return Ok();
+            var command = new DeleteModalityCommand(code);
+
+           await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 }

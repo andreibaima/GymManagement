@@ -37,7 +37,7 @@ namespace GymManagement.Core.Entities
         public Contact Contact { get; private set; }
         public Address Address { get; private set; }
         [JsonIgnore]
-        public Registration Registration { get; private set; }
+        public List<Registration> Registration { get; private set; }
 
         public void adicionarObservacao(string obs)
         {

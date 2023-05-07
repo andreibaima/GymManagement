@@ -30,13 +30,22 @@ namespace GymManagement.Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Registration>> GetAllAsync()
         {
-            return await _context.Registrations.ToListAsync();
+            return await _context.Registrations
+                .Include(r => r.Student)
+                .Include(r => r.Plan)
+                .ToListAsync();
         }
 
         public async Task<Registration> GetByCodeAsync(string code)
         {
             return await _context.Registrations.FirstOrDefaultAsync(r => r.Code == code);
         }
+
+        public async Task<Registration> GetByCodeStudentAsync(string code)
+        {
+            return await _context.Registrations.FirstOrDefaultAsync(r => r.StudentCode == code && r.IsActive);
+        }
+
 
         public async Task SalveChangesAsync()
         {

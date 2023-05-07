@@ -22,10 +22,11 @@ namespace GymManagement.Application.Commands.CreateRegistration
         {
             string[] meses = { "JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ" };
             List<MonthlyPayment> monthlyPayments = new List<MonthlyPayment>();
+            request.CreationDate = request.CreationDate.AddMonths(-3);
 
             for (var i = 1; i <= 12; i++)
             {
-                if (i >= DateTime.Now.Month)
+                if (i >= request.CreationDate.Month)
                 {
                     var vencimento = new DateTime(DateTime.Now.Year, i, request.DueDate, 00, 00, 00);
                     var monthlyPayment = new MonthlyPayment(request.Valor, vencimento, meses[i - 1], request.Code);

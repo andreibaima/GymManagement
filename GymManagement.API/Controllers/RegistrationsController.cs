@@ -1,4 +1,6 @@
 ﻿using GymManagement.Application.Commands.CreateRegistration;
+using GymManagement.Application.Queries.GetAllModalities;
+using GymManagement.Application.Queries.GetAllRegistrations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +27,13 @@ namespace GymManagement.API.Controllers
         public async Task<IActionResult> GetByCode(string code)
         {
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var registrations = await _mediator.Send(new GetAllRegistrationsQuery());
+            return Ok(registrations);
         }
     }
 }

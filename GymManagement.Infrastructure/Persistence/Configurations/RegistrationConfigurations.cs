@@ -16,9 +16,11 @@ namespace GymManagement.Infrastructure.Persistence.Configurations
             builder.HasKey(x => x.Id);
 
             builder.HasOne(r => r.Student)
-                .WithOne(s => s.Registration)
-                .HasForeignKey<Registration>(r => r.StudentCode)
-                .HasPrincipalKey<Student>(s => s.Code);
+                .WithMany(s => s.Registration)
+                .HasForeignKey(r => r.StudentCode)
+                .HasPrincipalKey(s => s.Code);
+                /* HasForeignKey<Registration>(r => r.StudentCode)
+                .HasPrincipalKey<Student>(s => s.Code); */
 
             builder.HasOne(r => r.Plan)
                 .WithMany(f => f.Registrations)
