@@ -1,3 +1,4 @@
+using ApiGlobalError.GlobalExceptionHandler;
 using GymManagement.Application.Commands.CreateStudent;
 using GymManagement.Core.Repositories;
 using GymManagement.Infrastructure.Persistence;
@@ -31,7 +32,7 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IModalityRepository, ModalityRepository>();
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
-builder.Services.AddScoped<IMonthlyPayments, MonthlyPaymentRepository>();
+builder.Services.AddScoped<IMonthlyPaymentsRepository, MonthlyPaymentRepository>();
 
 builder.Services.AddMediatR(t => t.RegisterServicesFromAssemblies(typeof(CreateStudentCommand).Assembly));
 
@@ -47,6 +48,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseMiddleware<ApiExceptionHandlerMiddleware>();
 
 app.MapControllers();
 

@@ -33,5 +33,11 @@ namespace GymManagement.Core.Entities
         public string RegistrationCode { get; private set; }
         [JsonIgnore]
         public Registration Registration { get; private set; }
+
+        public void makePayment()
+        {
+            Payday = DateTime.Now;
+            IsPay = true;
+        }
     }
 }
