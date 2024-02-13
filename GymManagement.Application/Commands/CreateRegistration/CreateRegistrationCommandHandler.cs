@@ -22,7 +22,7 @@ namespace GymManagement.Application.Commands.CreateRegistration
         {
             string[] meses = { "JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT", "NOV", "DEZ" };
             List<MonthlyPayment> monthlyPayments = new List<MonthlyPayment>();
-            request.CreationDate = request.CreationDate.AddMonths(-3);
+            //request.CreationDate = request.CreationDate.AddMonths(-3);
 
             for (var i = 1; i <= 12; i++)
             {

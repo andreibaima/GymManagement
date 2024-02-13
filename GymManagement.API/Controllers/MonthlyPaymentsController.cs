@@ -1,5 +1,6 @@
 ﻿using GymManagement.Application.Commands.MakeThePayment;
 using GymManagement.Application.Commands.UpdatePlan;
+using GymManagement.Application.Queries.GetAllPayments;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -16,6 +17,13 @@ namespace GymManagement.API.Controllers
         {
             _mediator = mediator;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _mediator.Send(new GetAllPaymentsQuery()));
+        }
+
         [HttpPut("{id}/makePayments")]
         public async Task<IActionResult> makePayments(int id, [FromBody] MakeThePaymentCommand command)
         {
