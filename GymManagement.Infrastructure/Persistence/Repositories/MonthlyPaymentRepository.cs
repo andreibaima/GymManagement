@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GymManagement.Infrastructure.Persistence.Repositories
 {
-    public class MonthlyPaymentRepository : IMonthlyPayments
+    public class MonthlyPaymentRepository : IMonthlyPaymentsRepository
     {
         private readonly GymManagementDbContext _context;
 
@@ -36,6 +36,16 @@ namespace GymManagement.Infrastructure.Persistence.Repositories
         public async Task<List<MonthlyPayment>> GetByCodeRegistrationAsync(string code)
         {
             return await _context.MonthlyPayments.Where(mp => mp.RegistrationCode == code).ToListAsync();
+        }
+
+        public async Task<MonthlyPayment> GetById(int Id)
+        {
+            return await _context.MonthlyPayments.FirstOrDefaultAsync(mp => mp.Id == Id);
+        }
+
+        public async Task MakePayment(MonthlyPayment monthlyPayment)
+        {
+            _context.Update(monthlyPayment);
         }
 
         public async Task SalveChangesAsync()

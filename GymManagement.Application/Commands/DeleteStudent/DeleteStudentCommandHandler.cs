@@ -12,9 +12,9 @@ namespace GymManagement.Application.Commands.DeleteStudent
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IRegistrationRepository _registrationRepository;
-        private readonly IMonthlyPayments _monthlyPayments;
+        private readonly IMonthlyPaymentsRepository _monthlyPayments;
 
-        public DeleteStudentCommandHandler(IStudentRepository studentRepository, IRegistrationRepository registrationRepository, IMonthlyPayments monthlyPayments)
+        public DeleteStudentCommandHandler(IStudentRepository studentRepository, IRegistrationRepository registrationRepository, IMonthlyPaymentsRepository monthlyPayments)
         {
             _studentRepository = studentRepository;
             _registrationRepository = registrationRepository;
