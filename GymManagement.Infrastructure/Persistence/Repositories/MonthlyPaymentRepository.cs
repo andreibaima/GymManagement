@@ -30,7 +30,10 @@ namespace GymManagement.Infrastructure.Persistence.Repositories
 
         public Task<List<MonthlyPayment>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return _context.MonthlyPayments
+                .Include(mp => mp.Registration)
+                .ThenInclude(r => r.Student)
+                .ToListAsync();
         }
 
         public async Task<List<MonthlyPayment>> GetByCodeRegistrationAsync(string code)
